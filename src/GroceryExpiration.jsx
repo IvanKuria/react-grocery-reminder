@@ -1,10 +1,16 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 function GroceryExpiration() {
 
     const [groceryItemList, setGroceryItemList] = useState([])
     const [newGroceryItem , setNewGrcoeryItem] = useState("")
-    const [newDate, setNewDate] = useState("")    
+    const [newDate, setNewDate] = useState("")
+
+    // renders the document title once the component renders
+    useEffect(() => {
+        document.title = "Grocery Reminder App"
+    }, [])
+
 
     // 1. need a function that will retrieve user input(grocery item)
     function retrieveGroceryItem(event){
@@ -17,10 +23,15 @@ function GroceryExpiration() {
     }
 
     // 3. need a function that will add the user input to the array of items
+    // function also handles edge cases where either input is empty.
     function addGroceryItem(){
-        setGroceryItemList(g => [...g, {name: newGroceryItem, date: newDate}])
-        setNewGrcoeryItem("")
-        setNewDate("")
+        if (newGroceryItem == "" || newDate == ""){
+            alert("One or more of the entries is empty")
+        } else{
+            setGroceryItemList(g => [...g, {name: newGroceryItem, date: newDate}])
+            setNewGrcoeryItem("")
+            setNewDate("")
+        }
     }
 
     // 4. need a function that can delete an item from the list
