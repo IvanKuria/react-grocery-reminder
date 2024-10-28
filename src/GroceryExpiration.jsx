@@ -54,7 +54,7 @@ function GroceryExpiration() {
                     value={newGroceryItem.charAt(0).toUpperCase() + newGroceryItem.slice(1)}>  
                 </input>
                 <input
-                    type="text"
+                    type="date"
                     placeholder="Date(MM/DD/YYYY)"
                     onChange={retrieveDate}
                     value={newDate}>  
@@ -68,7 +68,7 @@ function GroceryExpiration() {
             <ol>
                 {groceryItemList.map((groceryItem, index) => 
                     <li key={index}>
-                        {groceryItem.name} {groceryItem.date}
+                        🛒{groceryItem.name} 📅{groceryItem.date}
                         <button 
                             onClick={() => {deleteGroceryItem(index)}}
                             className="delete-button">
